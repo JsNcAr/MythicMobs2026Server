@@ -1,0 +1,20 @@
+RandomSkeletonKing:
+  Type: SkeletonKing
+  Worlds: world
+  Chance: 0.001
+  Priority: 1
+  Action: REPLACE
+  Conditions:
+  - outside true
+RandomSkeletalKnight:
+  Type: SkeletalKnight
+  Worlds: world
+  Chance: 0.008
+  Priority: 1
+  Action: REPLACE
+CruzaderSpawn:
+  Type: Cruzader
+  Worlds: world
+  Chance: 0.0005
+  Priority: 1
+  Action: REPLACE

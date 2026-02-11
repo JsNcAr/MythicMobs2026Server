@@ -1,0 +1,60 @@
+CruzaderImplosion:
+  Skills:
+    - effect:particlesphere{particle=flame;amount=200;radius=1.5} @PlayersInRadius{r=10}
+    - effect:explosion @PlayersInRadius{r=10}
+    # Using PlayersInRadius prevents chain reactions on minions
+    - explosion{yield=0.1;fire=true} @PlayersInRadius{r=10} 
+    - ignite{ticks=100} @PlayersInRadius{r=10}
+    - damage{amount=6;ignoreArmor=false} @PlayersInRadius{r=10}
+    - effect:particlesphere{p=blockcrack;material=NETHERRACK;amount=100;radius=1.5} @PlayersInRadius{r=10}
+CruzaderPullForce:
+  Skills:
+    - forcepull{spread=4} @PlayersInRadius{r=30}
+    - effect:enderbeam{d=20;y=2} @target
+CruzaderPull:
+  Skills:
+    - pull{velocity=6} @PlayersInRadius{r=15}
+    - effect:enderbeam{d=20;y=2} @PlayersInRadius{r=30}
+SummonGolem:
+  Skills:
+    - summon{mob=CruzaderGolem;amount=3;radius=10} @self
+    - effect:particlesphere{p=blockcrack;material=IRON_BLOCK;amount=200;radius=2} @Origin
+    - effect:particlesphere{particle=smoke_large;amount=200;radius=2} @Origin
+    - effect:particlesphere{p=blockcrack;material=NETHERRACK;amount=100;radius=2}  @Origin
+    - skill:CruzaderImplosion @Origin
+CruzaderSwap:
+  Skills:
+    - swap @PlayersInRadius{r=30}
+    - skill:CruzaderPull @PlayersInRadius{r=30}
+    - skill:CruzaderImplosion @PlayersInRadius{r=30}
+CruzaderTeleport:
+  Skills:
+    - teleport @target
+    - effect:particlesphere{p=blockcrack;material=IRON_BLOCK;amount=200;radius=2} @Origin
+    - effect:particlesphere{particle=smoke_large;amount=200;radius=2} @Origin
+    - effect:particlesphere{p=blockcrack;material=NETHERRACK;amount=100;radius=2}  @Origin
+    - skill:CruzaderImplosion @Origin
+CruzaderMovements:
+  Skills:
+    - randomskill{
+      skills=
+      CruzaderPullForce, CruzaderPull, CruzaderSwap, CruzaderTeleport
+      } @PlayersInRadius{r=30} ~onTimer:120
+CruzaderThrow:
+  Skills:
+    - skill:CruzaderPull @PlayersInRadius{r=30}
+    - delay 20
+    - throw{velocity=6} @PlayersInRadius{r=30}
+    - effect:particlesphere{p=blockcrack;material=IRON_BLOCK;amount=200;radius=2} @Origin
+    - effect:particlesphere{particle=smoke_large;amount=200;radius=2} @Origin
+    - effect:particlesphere{p=blockcrack;material=NETHERRACK;amount=100;radius=2}  @Origin
+    - skill:CruzaderImplosion @Origin
+CruzaderStun:
+  Skills:
+    - stun{duration=100} @target
+    - effect:particlesphere{p=blockcrack;material=IRON_BLOCK;amount=200;radius=2} @Origin
+    - effect:particlesphere{particle=smoke_large;amount=200;radius=2} @Origin
+    - effect:particlesphere{p=blockcrack;material=NETHERRACK;amount=100;radius=2}  @Origin
+    - skill:CruzaderImplosion @target
+    - delay 40
+    - skill:CruzaderThrow @target

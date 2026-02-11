@@ -1,0 +1,56 @@
+Cruzader:
+  Type: SKELETON
+  Display: Cruzader
+  Health: 120
+  Damage: 26
+  Disguise: Cruzader
+  KnockbackResistance: 10
+  BossBar:
+    Enabled: true
+    Title: "&4&lCruzader"
+    Range: 48
+    Style: SOLID
+    Color: RED
+  Modules:
+    ThreatTable: true
+  AIGoalSelectors:
+    - clear
+    - meleeattack
+    - randomstroll
+    - float
+  AITargetSelectors:
+    - clear      # 1. Removes all vanilla targeting logic (won't attack villagers, piglins, etc.)
+    - players
+  DamageModifiers:
+    - FALL 0
+    - PROJECTILE 0 ~onDamaged <30%
+    - SUFFOCATION 0
+    - THORNS 0
+    - LIGHTNING 0
+    - POISON 2
+    - WITHER 2
+
+  Drops:
+    - Money 500-2500
+    - CruzaderDrops
+  Options:
+    FollowRange: 64
+    MaxCombatRange: 96
+  Equipment:
+    - CruzaderHelmet HEAD
+    - CruzaderChestplate CHEST
+    - CruzaderLeggings LEGS
+    - CruzaderBoots FEET
+    - CruzaderSword MAINHAND
+    - Shield OFFHAND
+  Skills:
+    - shield{amount=30;maxShield=50} @self ~onDamaged =10%
+    - skill:SummonGolem ~onDamage =20%
+    - skill:CruzaderMovements ~onTimer:200
+    - skill:CruzaderThrow ~onTimer:250
+    - skill:CruzaderImplosion @target ~onTimer:400
+    - shieldbreak{duration=1000} @target ~onDamage =20%
+    - skill:CruzaderStun @target ~onDamage =0%-20%
+    #- summon{mob=Draugr;amount=5;radius=32} @self ~onDamaged =50%
+    #- rally{types=Draugr;radius=32;ot=false} @Trigger ~onDamaged
+    #CruzaderImplosion,
