@@ -1,0 +1,11 @@
+QuarantineLock:
+  Type: ARMOR_STAND
+  Display: '&c[ Cerradura de la Bóveda ]'
+  Options:
+    Invisible: true
+    Marker: true
+    HasGravity: false
+    Invincible: true
+  Skills:
+  # Triggers the opening sequence ONLY when a player right-clicks it
+  - skill{s=OpenQuarantineVault} @self ~onInteract
