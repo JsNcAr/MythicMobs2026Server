@@ -6,11 +6,11 @@
 !README.md
 
 # if the files to be tracked are in subdirectories
-!/Mobs/
-!/Mobs/*
-!/Skills/
-!/Skills/*
-!/Items/
-!/Items/*
-!/DropTables/
-!/DropTables/*
+!/mobs/
+!/mobs/*
+!/skills/
+!/skills/*
+!/items/
+!/items/*
+!/droptables/
+!/droptables/*
