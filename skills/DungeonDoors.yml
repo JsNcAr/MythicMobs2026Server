@@ -1,0 +1,23 @@
+OpenQuarantineVault:
+  Conditions:
+  # Checks if the player is holding the specific key type
+  - holding{m=tripwire_hook} true
+  Skills:
+  # 1. Provide feedback and consume the key
+  - message{m="&8[&cCuarentena&8] &7La pesada cerradura cede con un chirrido metálico..."} @target
+  - command{c="minecraft:clear <target.name> tripwire_hook 1"}
+  
+  # 2. Cinematic Audio
+  - sound{s=block.iron_door.open;v=2;p=0.5} @self
+  - sound{s=block.stone.break;v=2;p=0.5} @self
+  
+  # 3. Open the Door (REPLACE X Y Z with the actual block coordinates of your door)
+  - command{c="fill -4857 81 1562 -4857 82 1562 air"}
+  
+  # 4. Wait 5 seconds (100 ticks) to let them walk through
+  - delay 100
+  
+  # 5. Slam the door shut behind them
+  - command{c="fill -4857 81 1562 -4857 82 1562 iron_block"}
+  - sound{s=block.iron_door.close;v=2;p=0.5} @self
+  - message{m="&8[&cCuarentena&8] &cLa puerta se cierra de golpe a tus espaldas."} @target
