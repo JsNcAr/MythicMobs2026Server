@@ -29,7 +29,7 @@ CorruptedAcolyte:
     - GOLDEN_HOE MAINHAND
   Drops:
     # We will hook this to the Tainted Rosary drop later
-    - TaintedRosaryDrop 1 0.5
+    # - TaintedRosaryDrop 1 0.5
   Skills:
     # 25% chance on every attack to apply Wither
     - potion{type=WITHER;duration=40;level=0} @target ~onAttack 0.25
