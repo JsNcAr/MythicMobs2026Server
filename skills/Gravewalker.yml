@@ -1,6 +1,10 @@
 GravewalkerAura:
+  Conditions:
+    # 1. Are they wearing the MMOItem?
+    - wearing{slot=CHEST;material=GOLDEN_CHESTPLATE;name="*Robes of the Mad Cleric*"} true
+    # 2. Are they holding Shift / Sneaking?
+    - crouching true
   Skills:
-  - effect:particles{particle=ash;amount=2;vSpread=1;hSpread=0.5} @self
-  
-  # CORRECTED: 'cleartarget' works on standard Vanilla AI, forcing them to drop aggro
-  - cleartarget @MobsInRadius{types=ZOMBIE,SKELETON,HUSK,DROWNED,STRAY,WITHER_SKELETON;r=15}
+    # A slightly thicker particle cloud to visually tell the player "Stealth Mode is Active"
+    - effect:particles{particle=ash;amount=5;vSpread=0.5;hSpread=0.5;y=1} @self
+    - cleartarget @MobsInRadius{types=ZOMBIE,SKELETON,HUSK,DROWNED,STRAY,WITHER_SKELETON;r=4}

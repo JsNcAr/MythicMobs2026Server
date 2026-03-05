@@ -1,0 +1,11 @@
+AuraManager:
+  Type: ARMOR_STAND
+  Display: 'SystemAuraManager'
+  Options:
+    Invisible: true
+    Marker: true
+    Persistent: true
+    HasGravity: false
+  Skills:
+    # Changed to 10 ticks (0.5 seconds) for a highly responsive sneak check
+    - sudoskill{s=GravewalkerAura} @PlayersInWorld ~onTimer:10
