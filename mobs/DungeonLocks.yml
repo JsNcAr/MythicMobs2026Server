@@ -8,4 +8,4 @@ QuarantineLock:
     Invincible: true
     AlwaysShowName: true
   Skills:
-  - skill{s=OpenQuarantineVault} @self ~onInteract
+  - skill{s=OpenQuarantineVault} @trigger ~onInteract
