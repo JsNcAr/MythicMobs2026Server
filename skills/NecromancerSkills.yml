@@ -1,0 +1,83 @@
+# =================================================================
+# ALDOUS, THE MAD NECROMANCER - SKILL CONFIGURATION
+# Archetype: Slow Commander, High HP, Heavy Summoner, Area Denial
+# =================================================================
+
+# 1. The Endless Choir (Passive Wave Summoning)
+AldousEndlessChoir:
+  Skills:
+  # Cinematic warning
+  - sound{s=entity.zombie_villager.converted;v=1;p=0.5} @self
+  - message{m="&8[&5Aldous&8] &7Rise, my flock... The Light has abandoned us!"} @PlayersInRadius{r=30}
+  - delay 20
+  # The Summon: Calls 3 Acolytes in a 5 block radius
+  - summon{mob=CorruptedAcolyte;amount=3;radius=5;noise=5} @self
+  - effect:particlesphere{particle=soul;amount=100;radius=3} @self
+
+# 2. Arise! (Triggered Heavy Summon)
+AldousArise:
+  Skills:
+  - sound{s=entity.wither.spawn;v=1;p=0.5} @self
+  - message{m="&8[&5Aldous&8] &7Protect your Cleric, Paladin!"} @PlayersInRadius{r=30}
+  - effect:particlesphere{particle=large_smoke;amount=150;radius=2} @self
+  # Summons the heavy mini-boss
+  - summon{mob=FallenPaladin;amount=1;radius=3;noise=2} @self
+
+# 3. Grasping Graves (Area Denial & Crowd Control)
+AldousGraspingGraves:
+  Skills:
+  - sound{s=entity.skeleton.ambient;v=1;p=0.1} @self
+  - message{m="&8[&5Aldous&8] &7The grave claims your steps..."} @PlayersInRadius{r=30}
+  # Targets players in a 25 block radius
+  - effect:particlesphere{particle=ash;amount=50;radius=1} @PlayersInRadius{r=25}
+  - delay 20
+  # Applies Slowness 4 for 3 seconds, effectively rooting them
+  - potion{type=SLOW;duration=60;level=3} @PlayersInRadius{r=25}
+  - damage{amount=4;ignoreArmor=false} @PlayersInRadius{r=25}
+  - effect:particlesphere{particle=block_crack;material=DIRT;amount=50;radius=1} @PlayersInRadius{r=25}
+
+# 4. Profane Consecration (Dark Aura)
+AldousProfaneConsecration:
+  Skills:
+  - sound{s=block.beacon.activate;v=1;p=0.5} @self
+  - message{m="&8[&5Aldous&8] &7Bathe in the dark resonance!"} @PlayersInRadius{r=30}
+  - effect:particlesphere{particle=spell_witch;amount=300;radius=15} @self
+  # Punishes players in a 15 block radius with Wither
+  - potion{type=WITHER;duration=100;level=0} @PlayersInRadius{r=15}
+  # Buffs his own minions in the same radius with Speed and Strength
+  - potion{type=SPEED;duration=100;level=1} @MobsInRadius{types=CorruptedAcolyte,FallenPaladin;r=15}
+  - potion{type=INCREASE_DAMAGE;duration=100;level=0} @MobsInRadius{types=CorruptedAcolyte,FallenPaladin;r=15}
+
+# 5. Martyr's Bond (Damage Mitigation)
+AldousMartyrsBond:
+  Skills:
+  - message{m="&8[&5Aldous&8] &7My flock sustains my flesh!"} @PlayersInRadius{r=30}
+  - effect:particlesphere{particle=enchantment_table;amount=200;radius=2} @self
+  - sound{s=item.shield.block;v=1;p=0.5} @self
+  # Gives Aldous a massive temporary absorption shield
+  - shield{amount=100;maxshield=100} @self
+
+# 6. Corpse Detonation (The Punisher Mechanic)
+AldousCorpseDetonation:
+  Skills:
+  - message{m="&8[&5Aldous&8] &7Your bodies serve a greater purpose!"} @PlayersInRadius{r=30}
+  - sound{s=entity.ghast.warn;v=1;p=0.5} @self
+  # Forces up to 3 nearby Acolytes to cast the "CorpseBombTimer" skill
+  - skill{s=CorpseBombTimer} @MobsInRadius{types=CorruptedAcolyte;r=30;limit=3;sort=RANDOM}
+
+# 6b. The Minion's Bomb Timer (Tied to the Cruzader's magic)
+CorpseBombTimer:
+  Skills:
+  # The acolyte stops moving and glows
+  - potion{type=GLOWING;duration=60;level=0} @self
+  - potion{type=SLOW;duration=60;level=5} @self
+  - effect:particlesphere{particle=flame;amount=20;radius=1} @self
+  - sound{s=entity.creeper.primed;v=1;p=1.2} @self
+  - delay 20
+  - effect:particlesphere{particle=flame;amount=40;radius=1.5} @self
+  - sound{s=entity.creeper.primed;v=1;p=1.5} @self
+  - delay 20
+  # Recycles your EXACT CruzaderImplosion skill from the previous boss!
+  - skill{s=CruzaderImplosion} @self
+  # Instantly kills the Acolyte
+  - suicide @self

@@ -1,0 +1,95 @@
+AldousTheMadCleric:
+  Type: HUSK # Using Husk ensures he doesn't burn in daylight, just in case
+  Display: '&5Aldous, the Mad Cleric'
+  Health: 350
+  Damage: 5
+  Faction: CultOfAldous
+  Modules:
+    ThreatTable: true
+  BossBar:
+    Enabled: true
+    Title: '&5&lAldous, the Mad Cleric'
+    Range: 64
+    Color: PURPLE
+    Style: SEGMENTED_6
+  Options:
+    PreventOtherDrops: true
+    KnockbackResistance: 0.6
+    MovementSpeed: 0.22 # Slightly slower than a standard zombie
+    FollowRange: 64
+    MaxCombatRange: 64
+    Despawn: false
+  DamageModifiers:
+    # As a master of the dead, he resists Wither/Poison
+    - WITHER 0
+    - POISON 0
+    - FALL 0
+    - SUFFOCATION 0
+    # 25% damage reduction from arrows to encourage players to risk getting close
+    - PROJECTILE 0.75 
+
+  Equipment:
+    - mmoitems{type=ARMOR;id=MAD_CLERIC_HOOD} HEAD
+    - mmoitems{type=ARMOR;id=MAD_CLERIC_ROBES} CHEST
+    - mmoitems{type=ARMOR;id=MAD_CLERIC_LEGGINGS} LEGS
+    - mmoitems{type=ARMOR;id=MAD_CLERIC_BOOTS} FEET
+    - mmoitems{type=SWORD;id=GRAVE_CALLER_SCYTHE} HAND
+  
+  # --- NEW: BOSS LOOT TABLE ---
+  # Format: - mmoitems{type=TYPE;id=ID} <amount> <chance_from_0_to_1>
+  Drops:
+    # 1. THE GUARANTEED CRAFTING PROGRESSION
+    # Drops 1 to 2 Cores with a 100% chance (1.0)
+    # - mmoitems{type=MATERIAL;id=FRACTURED_ARCANIC_CORE} 1-2 1.0
+    
+    # 2. THE ARMOR SET (25% chance per piece)
+    # This means a player will have to fight him a few times to get the full stealth set!
+    - mmoitems{type=ARMOR;id=MAD_CLERIC_HOOD} 1 0.25
+    - mmoitems{type=ARMOR;id=MAD_CLERIC_ROBES} 1 0.25
+    - mmoitems{type=ARMOR;id=MAD_CLERIC_LEGGINGS} 1 0.25
+    - mmoitems{type=ARMOR;id=MAD_CLERIC_BOOTS} 1 0.25
+    
+    # 3. THE SCYTHE (15% chance - The rarest drop)
+    - mmoitems{type=SWORD;id=GRAVE_CALLER_SCYTHE} 1 0.15
+
+  # --- ADVANCED AI CONFIGURATION ---
+  AIGoalSelectors:
+    - clear
+    - float # Prevents drowning if players try to flood the room
+    # Forces him to maintain a tactical distance instead of rushing for melee
+    - MoveWithinDistanceOfTarget
+    # If players use glitches to leave the room, he tethers back to his spawn
+    - gotospawnlocation
+    - randomlookaround
+  AITargetSelectors:
+    - clear
+    # Immediately targets anything that damages him (Snow Golems, wolves, players)
+    - hurtbytarget
+    - players
+    # Actively scans for Iron Golems
+    - irongolems
+
+  # --- COMBAT LOGIC & SKILL TRIGGERS ---
+  Skills:
+    # 1. The Core Engine: Spawns the swarm every 18 seconds
+    - skill{s=AldousEndlessChoir} ~onTimer:360
+    
+    # 2. Area Denial: Cast every 12.5 seconds
+    - skill{s=AldousGraspingGraves} ~onTimer:250
+    
+    # 3. Profane Consecration: Cast every 21 seconds to buff the swarm
+    - skill{s=AldousProfaneConsecration} ~onTimer:420
+    
+    # 4. The Punisher: Cast every 25 seconds to detonate minions
+    - skill{s=AldousCorpseDetonation} ~onTimer:500
+    
+    # 5. The Wall (Fallen Paladins):
+    # Using the "=" health modifier ensures these only trigger EXACTLY ONCE when his HP drops below these thresholds
+    - skill{s=AldousArise} ~onDamaged =80%
+    - skill{s=AldousArise} ~onDamaged =50%
+    - skill{s=AldousArise} ~onDamaged =20%
+    
+    # 6. Defensive Mechanic: 
+    # He will only cast his Martyr's Bond shield if his health is below 50%.
+    # Checked every 15 seconds.
+    - skill{s=AldousMartyrsBond} ~onTimer:300 <50%
