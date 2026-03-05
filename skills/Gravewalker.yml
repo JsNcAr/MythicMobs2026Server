@@ -1,7 +1,6 @@
 GravewalkerAura:
   Skills:
-  # A very subtle visual effect so the player knows the stealth is active
-  - effect:particles{particle=ash;amount=5;vSpread=1;hSpread=0.5} @self
+  - effect:particles{particle=ash;amount=2;vSpread=1;hSpread=0.5} @self
   
-  # Clears the threat tables of any nearby mindless undead, making them ignore the player
-  - clearthreat @MobsInRadius{types=ZOMBIE,SKELETON,HUSK,DROWNED,STRAY,WITHER_SKELETON;r=15}
+  # CORRECTED: 'cleartarget' works on standard Vanilla AI, forcing them to drop aggro
+  - cleartarget @MobsInRadius{types=ZOMBIE,SKELETON,HUSK,DROWNED,STRAY,WITHER_SKELETON;r=15}
