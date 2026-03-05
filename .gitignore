@@ -1,5 +1,6 @@
 # Ignore everything
 *
+spawners/*
 
 # But not these files...
 !.gitignore
