@@ -1,0 +1,9 @@
+PaladinTaunt:
+  Skills:
+  - sound{s=entity.wither_skeleton.ambient;v=1;p=0.5} @self
+  - effect:particlesphere{particle=villager_angry;amount=15;radius=2} @self
+  # Generates massive threat, forcing players to deal with him
+  - taunt{amount=1000} @PlayersInRadius{r=15}
+  # Gives himself a brief defensive shield
+  - shield{amount=20;maxshield=20} @self
+  - message{m="&8[&6Fallen Paladin&8] &cNone shall touch the High Cleric!"} @PlayersInRadius{r=15}

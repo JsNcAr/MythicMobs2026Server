@@ -1,0 +1,70 @@
+CorruptedAcolyte:
+  Type: ZOMBIE
+  Display: '&7Corrupted Acolyte'
+  Health: 15
+  Damage: 4
+  Faction: AldousMinions
+  Options:
+    MovementSpeed: 0.25
+    PreventOtherDrops: true
+  Modules:
+    # Enables threat tracking so they can dynamically switch targets
+    ThreatTable: true
+  AIGoalSelectors:
+    # Clears vanilla AI and forces them to pursue and melee attack
+    - clear
+    - meleeattack
+    - randomstroll
+  AITargetSelectors:
+    - clear
+    - players
+    - hurtbytarget
+  Equipment:
+    # White and Gold cleric attire
+    - LEATHER_HELMET:{color=white} HEAD
+    - GOLDEN_CHESTPLATE CHEST
+    - LEATHER_LEGGINGS:{color=white} LEGS
+    - LEATHER_BOOTS:{color=white} FEET
+    # A golden hoe resembles a cleric's sickle or holy symbol
+    - GOLDEN_HOE MAINHAND
+  Drops:
+    # We will hook this to the Tainted Rosary drop later
+    - TaintedRosaryDrop 1 0.5
+  Skills:
+    # 25% chance on every attack to apply Wither
+    - potion{type=WITHER;duration=40;level=0} @target ~onAttack 0.25
+
+FallenPaladin:
+  Type: WITHER_SKELETON
+  Display: '&8[&6&lFallen Paladin&8]'
+  Health: 80
+  Damage: 8
+  Faction: AldousMinions
+  Options:
+    # Makes the Paladin very hard to push away
+    KnockbackResistance: 0.8
+    MovementSpeed: 0.22
+    PreventOtherDrops: true
+  Modules:
+    ThreatTable: true
+  AIGoalSelectors:
+    - clear
+    - meleeattack
+    - gotoparent
+  AITargetSelectors:
+    - clear
+    - ParentHurtBy
+    - ParentTarget
+    - players
+    - hurtbytarget
+  Equipment:
+    - IRON_HELMET HEAD
+    - IRON_CHESTPLATE CHEST
+    - CHAINMAIL_LEGGINGS LEGS
+    - IRON_BOOTS FEET
+    - IRON_SWORD MAINHAND
+    - SHIELD OFFHAND
+  Skills:
+    # 20% chance to physically throw the player backwards on hit
+    - throw{velocity=1.2;velocityY=0.4} @target ~onAttack 0.2
+    - skill{s=PaladinTaunt} ~onTimer:200
