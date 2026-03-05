@@ -1,5 +1,5 @@
 OpenQuarantineVault:
-  Conditions:
+  TargetConditions:
   # Checks if the player is holding the specific key type
   - holding{m=tripwire_hook} true
   Skills:
