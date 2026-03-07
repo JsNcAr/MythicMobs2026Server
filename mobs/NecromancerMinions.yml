@@ -38,6 +38,7 @@ CorruptedAcolyte:
 FallenPaladin:
   Type: WITHER_SKELETON
   Display: '&8[&6&lFallen Paladin&8]'
+  Disguise: FallenPaladin
   Health: 80
   Damage: 8
   Faction: AldousMinions
