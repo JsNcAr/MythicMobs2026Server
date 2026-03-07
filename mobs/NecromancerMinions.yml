@@ -1,11 +1,7 @@
 CorruptedAcolyte:
   Type: ZOMBIE
   Display: '&7Corrupted Acolyte'
-  Disguise:
-    Type: PLAYER
-    Options:
-      # Using a custom skin with a corrupted, undead appearance
-      SkinURL: 'https://textures.minecraft.net/texture/99e0c078ce8e79fdd1afb19f523bf3732af42b3ef48ed9531d33f7139f1933f6'
+  Disguise: CorrupedAcolyte
   Health: 15
   Damage: 4
   Faction: AldousMinions
