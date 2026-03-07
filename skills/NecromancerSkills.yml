@@ -68,7 +68,6 @@ AldousCorpseDetonation:
 # 6b. The Minion's Bomb Timer (Tied to the Cruzader's magic)
 CorpseBombTimer:
   Skills:
-  # The acolyte stops moving and glows
   - potion{type=GLOWING;duration=60;level=0} @self
   - potion{type=SLOW;duration=60;level=5} @self
   - effect:particlesphere{particle=flame;amount=20;radius=1} @self
@@ -77,7 +76,17 @@ CorpseBombTimer:
   - effect:particlesphere{particle=flame;amount=40;radius=1.5} @self
   - sound{s=entity.creeper.primed;v=1;p=1.5} @self
   - delay 20
-  # Recycles your EXACT CruzaderImplosion skill from the previous boss!
+  
+  # The Explosion!
   - skill{s=CruzaderImplosion} @self
+  
+  # NEW: The Acolyte transfers its life force to Aldous!
+  # Heals Aldous for 50 HP per exploding minion. 
+  - heal{amount=50} @MobsInRadius{types=AldousTheMadCleric;r=40}
+  
+  # Optional: A cool visual showing the soul traveling/healing
+  - effect:particles{particle=soul;amount=20;hS=1;vS=1} @MobsInRadius{types=AldousTheMadCleric;r=40}
+  - sound{s=entity.wither.spawn;v=0.5;p=2.0} @MobsInRadius{types=AldousTheMadCleric;r=40}
+  
   # Instantly kills the Acolyte
   - suicide @self
