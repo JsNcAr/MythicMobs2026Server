@@ -1,7 +1,7 @@
 CorruptedAcolyte:
   Type: ZOMBIE
   Display: '&7Corrupted Acolyte'
-  Disguise: CorrupedAcolyte
+  Disguise: CorruptedAcolyte
   Health: 15
   Damage: 4
   Faction: AldousMinions
