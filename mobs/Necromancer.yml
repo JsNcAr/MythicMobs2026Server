@@ -58,19 +58,34 @@ AldousTheMadCleric:
 
   # --- ADVANCED AI CONFIGURATION ---
   AIGoalSelectors:
+    # 1. Wipes the default Vanilla Minecraft AI
     - clear
-    - float # Prevents drowning if players try to flood the room
-    # Forces him to maintain a tactical distance instead of rushing for melee
+    
+    # 2. Survival (Highest Priority): Prevents drowning if players try to flood the room
+    - float 
+    
+    # 3. NEW DISENGAGE LOGIC: If a player gets within 8 blocks, he overrides everything and sprints away
+    - fleeplayers{distance=8;speed=1.2}
+    
+    # 4. Tactical Positioning: If the player is outside 8 blocks, he maintains his spellcasting distance
     - MoveWithinDistanceOfTarget
-    # If players use glitches to leave the room, he tethers back to his spawn
+    
+    # 5. Anti-Cheese: If players leave the arena or glitch out, he tethers back
     - gotospawnlocation
+    
+    # 6. Idle Behavior (Lowest Priority): Looks around when combat ends
     - randomlookaround
+
   AITargetSelectors:
     - clear
-    # Immediately targets anything that damages him (Snow Golems, wolves, players)
+    
+    # 1. Self-Defense: Instantly snaps his aggro to anything that hits him (wolves, golems, arrows)
     - hurtbytarget
+    
+    # 2. Primary Aggro: Actively scans for players to attack
     - players
-    # Actively scans for Iron Golems
+    
+    # 3. Minion Clear: Attacks Iron Golems if no players are in sight
     - irongolems
 
   # --- COMBAT LOGIC & SKILL TRIGGERS ---
