@@ -6,4 +6,4 @@ PaladinTaunt:
   - taunt{amount=1000} @PlayersInRadius{r=15}
   # Gives himself a brief defensive shield
   - shield{amount=20;maxshield=20} @self
-  - message{m="&8[&6Fallen Paladin&8] &cNone shall touch the High Cleric!"} @PlayersInRadius{r=15}
+  - message{m="&8[&6Fallen Paladin&8] &c¡Nadie tocará al Alto Clérigo!"} @PlayersInRadius{r=15}

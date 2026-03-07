@@ -8,7 +8,7 @@ AldousEndlessChoir:
   Skills:
   # Cinematic warning
   - sound{s=entity.zombie_villager.converted;v=1;p=0.5} @self
-  - message{m="&8[&5Aldous&8] &7Rise, my flock... The Light has abandoned us!"} @PlayersInRadius{r=30}
+  - message{m="&8[&5Aldous&8] &7¡Levántense, mi rebaño... la Luz nos ha abandonado!"} @PlayersInRadius{r=30}
   - delay 20
   # The Summon: Calls 3 Acolytes in a 5 block radius
   - summon{mob=CorruptedAcolyte;amount=3;radius=5;noise=5} @self
@@ -18,7 +18,7 @@ AldousEndlessChoir:
 AldousArise:
   Skills:
   - sound{s=entity.wither.spawn;v=1;p=0.5} @self
-  - message{m="&8[&5Aldous&8] &7Protect your Cleric, Paladin!"} @PlayersInRadius{r=30}
+  - message{m="&8[&5Aldous&8] &7¡Protege a tu Clérigo, Paladín!"} @PlayersInRadius{r=30}
   - effect:particlesphere{particle=large_smoke;amount=150;radius=2} @self
   # Summons the heavy mini-boss
   - summon{mob=FallenPaladin;amount=1;radius=3;noise=2} @self
@@ -27,7 +27,7 @@ AldousArise:
 AldousGraspingGraves:
   Skills:
   - sound{s=entity.skeleton.ambient;v=1;p=0.1} @self
-  - message{m="&8[&5Aldous&8] &7The grave claims your steps..."} @PlayersInRadius{r=30}
+  - message{m="&8[&5Aldous&8] &7La tumba reclama tus pasos..."} @PlayersInRadius{r=30}
   # Targets players in a 25 block radius
   - effect:particlesphere{particle=ash;amount=50;radius=1} @PlayersInRadius{r=25}
   - delay 20
@@ -40,7 +40,7 @@ AldousGraspingGraves:
 AldousProfaneConsecration:
   Skills:
   - sound{s=block.beacon.activate;v=1;p=0.5} @self
-  - message{m="&8[&5Aldous&8] &7Bathe in the dark resonance!"} @PlayersInRadius{r=30}
+  - message{m="&8[&5Aldous&8] &7¡Báñate en la resonancia oscura!"} @PlayersInRadius{r=30}
   - effect:particlesphere{particle=spell_witch;amount=300;radius=15} @self
   # Punishes players in a 15 block radius with Wither
   - potion{type=WITHER;duration=100;level=0} @PlayersInRadius{r=15}
@@ -51,7 +51,7 @@ AldousProfaneConsecration:
 # 5. Martyr's Bond (Damage Mitigation)
 AldousMartyrsBond:
   Skills:
-  - message{m="&8[&5Aldous&8] &7My flock sustains my flesh!"} @PlayersInRadius{r=30}
+  - message{m="&8[&5Aldous&8] &7¡Mi rebaño sostiene mi carne!"} @PlayersInRadius{r=30}
   - effect:particlesphere{particle=enchantment_table;amount=200;radius=2} @self
   - sound{s=item.shield.block;v=1;p=0.5} @self
   # Gives Aldous a massive temporary absorption shield
@@ -60,7 +60,7 @@ AldousMartyrsBond:
 # 6. Corpse Detonation (The Punisher Mechanic)
 AldousCorpseDetonation:
   Skills:
-  - message{m="&8[&5Aldous&8] &7Your bodies serve a greater purpose!"} @PlayersInRadius{r=30}
+  - message{m="&8[&5Aldous&8] &7¡Tus cuerpos sirven a un propósito mayor!"} @PlayersInRadius{r=30}
   - sound{s=entity.ghast.warn;v=1;p=0.5} @self
   # CORRECTED: Changed 'skill' to 'sudoskill'. Now the Acolytes cast the bomb timer!
   - sudoskill{s=CorpseBombTimer} @MobsInRadius{types=CorruptedAcolyte;r=30;limit=3;sort=RANDOM}
@@ -97,7 +97,7 @@ NecroticBurst:
   Conditions:
   - targetwithin{d=5} true
   Skills:
-  - message{m="&8[&5Aldous&8] &7Step back, foolish mortal!"} @PlayersInRadius{r=15}
+  - message{m="&8[&5Aldous&8] &7¡Retrocede, mortal insensato!"} @PlayersInRadius{r=15}
   - sound{s=entity.generic.explode;v=1;p=0.5} @self
   - sound{s=entity.wither.ambient;v=1;p=0.8} @self
   # Creates a massive sphere of soul particles
