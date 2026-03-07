@@ -75,31 +75,35 @@ AldousTheMadCleric:
 
   # --- COMBAT LOGIC & SKILL TRIGGERS ---
   Skills:
-    # 1. The Core Engine: Spawns the swarm every 18 seconds
-    - skill{s=AldousEndlessChoir} ~onTimer:360
+    # --- CONSTANT MAGIC CASTING (High Frequency) ---
     
-    # 2. Area Denial: Cast every 12.5 seconds
-    - skill{s=AldousGraspingGraves} ~onTimer:250
+    # Ranged Magic: Fires a Soul Spear every 4 seconds. This acts as his "Basic Attack."
+    - skill{s=SoulSpear} @target ~onTimer:80
     
-    # 3. Profane Consecration: Cast every 21 seconds to buff the swarm
-    - skill{s=AldousProfaneConsecration} ~onTimer:420
+    # Anti-Melee: Cast every 8 seconds, but ONLY if a player is within 5 blocks.
+    - skill{s=NecroticBurst} @self ~onTimer:160
     
-    # 4. The Punisher: Cast every 25 seconds to detonate minions
-    - skill{s=AldousCorpseDetonation} ~onTimer:500
+    # Area Denial: Cast every 15 seconds. Forces players to keep moving.
+    - skill{s=AldousGraspingGraves} ~onTimer:300
     
-    # 5. The Wall (Fallen Paladins):
-    # Using the "=" health modifier ensures these only trigger EXACTLY ONCE when his HP drops below these thresholds
+    # --- THE SUMMONING LOOP (Low Frequency, High Impact) ---
+    
+    # Spawns the swarm every 35 seconds (up from 18s). Gives players time to actually fight him.
+    - skill{s=AldousEndlessChoir} ~onTimer:700
+    
+    # Detonates minions every 45 seconds (up from 25s). 
+    # Because this heals him, making it rare makes it feel like a critical "DPS Check" phase.
+    - skill{s=AldousCorpseDetonation} ~onTimer:900
+    
+    # Buffs the swarm every 50 seconds. 
+    - skill{s=AldousProfaneConsecration} ~onTimer:1000
+    
+    # --- HEALTH-TRIGGERED EVENTS (Unchanged) ---
+    
+    # The Wall (Fallen Paladins): Triggers exactly once per threshold.
     - skill{s=AldousArise} ~onDamaged =80%
     - skill{s=AldousArise} ~onDamaged =50%
     - skill{s=AldousArise} ~onDamaged =20%
     
-    # 6. Defensive Mechanic: 
-    # He will only cast his Martyr's Bond shield if his health is below 15%.
-    # Checked every 15 seconds.
-    - skill{s=AldousMartyrsBond} ~onTimer:300 <15%
-
-    # He will try to use NecroticBurst every 8 seconds, but ONLY if a player is within 5 blocks (due to our condition)
-    - skill{s=NecroticBurst} @self ~onTimer:160
-    
-    # He will fire a Soul Spear at his target every 4 seconds
-    - skill{s=SoulSpear} @target ~onTimer:80
+    # Defensive Shield: Checked every 15 seconds, only activates below 15% HP.
+    - skill{s=AldousMartyrsBond} ~onTimer:300 <15%  
