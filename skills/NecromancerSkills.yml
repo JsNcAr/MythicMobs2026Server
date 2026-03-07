@@ -130,3 +130,16 @@ SoulSpear-Hit:
   - potion{type=WITHER;duration=60;level=1} 
   - effect:particles{particle=soul;amount=20;hS=0.5;vS=0.5} @origin
   - sound{s=entity.player.hurt_on_fire;v=1;p=0.8} @origin
+
+PhantomLift:
+  Skills:
+  - message{m="&8[&5Aldous&8] &7Rise and face the void!"} @target
+  - sound{s=block.enchantment_table.use;v=1;p=0.5} @self
+  
+  # THE CORE MECHANIC: Applies Levitation level 1 for 3 seconds (60 ticks)
+  - potion{type=LEVITATION;duration=60;level=0} @target
+  
+  # Visuals: Engulfs the player in rising soul particles as they float
+  - effect:particles{particle=soul;amount=30;vSpread=2;hSpread=0.5} @target
+  - effect:particles{particle=ash;amount=50;vSpread=2;hSpread=0.5} @target
+  - sound{s=entity.shulker_bullet.hit;v=1;p=0.5} @target

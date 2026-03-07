@@ -106,6 +106,9 @@ AldousTheMadCleric:
     # Detonates up to 3 minions at 45s (right after Wave 2 arrives).
     # If players didn't clear Wave 1, there are now a LOT of bombs in the room!
     - skill{s=AldousCorpseDetonation} ~onTimer:900
+
+    # NEW: Lifts his current target into the air every 14 seconds (280 ticks)
+    - skill{s=PhantomLift} @target ~onTimer:280
     
     # --- HEALTH-TRIGGERED EVENTS (Unchanged) ---
     - skill{s=AldousArise} ~onDamaged =80%
