@@ -3,7 +3,7 @@ CorruptedAcolyte:
   Display: '&7Corrupted Acolyte'
   Disguise: CorruptedAcolyte
   Health: 15
-  Damage: 4
+  Damage: 10
   Faction: AldousMinions
   Options:
     MovementSpeed: 0.25
@@ -44,7 +44,7 @@ FallenPaladin:
   Display: '&8[&6&lFallen Paladin&8]'
   Disguise: FallenPaladin
   Health: 80
-  Damage: 8
+  Damage: 25
   Faction: AldousMinions
   Options:
     # Makes the Paladin very hard to push away

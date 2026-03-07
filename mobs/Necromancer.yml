@@ -3,7 +3,7 @@ AldousTheMadCleric:
   Display: '&5Aldous, the Mad Cleric'
   Disguise: Necromancer
   Health: 800
-  Damage: 5
+  Damage: 15
   Faction: CultOfAldous
   Modules:
     ThreatTable: true
