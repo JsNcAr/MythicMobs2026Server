@@ -90,3 +90,43 @@ CorpseBombTimer:
   
   # Instantly kills the Acolyte
   - suicide @self
+
+# --- ANTI-MELEE BURST ---
+NecroticBurst:
+  # The condition ensures he only casts this if someone is uncomfortably close (within 5 blocks)
+  Conditions:
+  - targetwithin{d=5} true
+  Skills:
+  - message{m="&8[&5Aldous&8] &7Step back, foolish mortal!"} @PlayersInRadius{r=15}
+  - sound{s=entity.generic.explode;v=1;p=0.5} @self
+  - sound{s=entity.wither.ambient;v=1;p=0.8} @self
+  # Creates a massive sphere of soul particles
+  - effect:particlesphere{particle=soul;amount=100;radius=4} @self
+  - effect:particlesphere{particle=large_smoke;amount=50;radius=4} @self
+  # Deals 10 damage to anyone caught in it
+  - damage{amount=10} @PlayersInRadius{r=5}
+  # The Knockback! 'velocity' pushes them back, 'velocityY' knocks them up into the air.
+  - throw{velocity=1.5;velocityY=0.6} @PlayersInRadius{r=5}
+
+# --- RANGED SPELL: SOUL SPEAR ---
+SoulSpear:
+  Skills:
+  - sound{s=entity.wither.shoot;v=1;p=1.2} @self
+  # This launches the projectile at his target. It travels 15 blocks per second.
+  - projectile{onTick=SoulSpear-Tick;onHit=SoulSpear-Hit;v=15;i=1;hR=1;vR=1;MaxRange=30} @target
+
+# What the projectile looks like while flying through the air
+SoulSpear-Tick:
+  Skills:
+  # A trail of blue soul fire
+  - effect:particles{particle=soul_fire_flame;amount=3;vSpread=0.1;hSpread=0.1} @origin
+  - effect:particles{particle=ash;amount=5;vSpread=0.2;hSpread=0.2} @origin
+
+# What happens when the projectile hits a player (or a wall)
+SoulSpear-Hit:
+  Skills:
+  - damage{amount=8}
+  # Applies Wither 2 for 3 seconds
+  - potion{type=WITHER;duration=60;level=1} 
+  - effect:particles{particle=soul;amount=20;hS=0.5;vS=0.5} @origin
+  - sound{s=entity.player.hurt_on_fire;v=1;p=0.8} @origin

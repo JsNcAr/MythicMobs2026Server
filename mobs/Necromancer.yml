@@ -94,3 +94,9 @@ AldousTheMadCleric:
     # He will only cast his Martyr's Bond shield if his health is below 15%.
     # Checked every 15 seconds.
     - skill{s=AldousMartyrsBond} ~onTimer:300 <15%
+
+    # He will try to use NecroticBurst every 8 seconds, but ONLY if a player is within 5 blocks (due to our condition)
+    - skill{s=NecroticBurst} @self ~onTimer:160
+    
+    # He will fire a Soul Spear at his target every 4 seconds
+    - skill{s=SoulSpear} @target ~onTimer:80
