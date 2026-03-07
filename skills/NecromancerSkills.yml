@@ -62,8 +62,8 @@ AldousCorpseDetonation:
   Skills:
   - message{m="&8[&5Aldous&8] &7Your bodies serve a greater purpose!"} @PlayersInRadius{r=30}
   - sound{s=entity.ghast.warn;v=1;p=0.5} @self
-  # Forces up to 3 nearby Acolytes to cast the "CorpseBombTimer" skill
-  - skill{s=CorpseBombTimer} @MobsInRadius{types=CorruptedAcolyte;r=30;limit=3;sort=RANDOM}
+  # CORRECTED: Changed 'skill' to 'sudoskill'. Now the Acolytes cast the bomb timer!
+  - sudoskill{s=CorpseBombTimer} @MobsInRadius{types=CorruptedAcolyte;r=30;limit=3;sort=RANDOM}
 
 # 6b. The Minion's Bomb Timer (Tied to the Cruzader's magic)
 CorpseBombTimer:
