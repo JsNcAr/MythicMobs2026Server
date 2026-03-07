@@ -45,13 +45,13 @@ AldousTheMadCleric:
     
     # 2. THE ARMOR SET (25% chance per piece)
     # This means a player will have to fight him a few times to get the full stealth set!
-    - mmoitems{type=ARMOR;id=MAD_CLERIC_HOOD} 1 0.25
-    - mmoitems{type=ARMOR;id=MAD_CLERIC_ROBES} 1 0.25
-    - mmoitems{type=ARMOR;id=MAD_CLERIC_LEGGINGS} 1 0.25
-    - mmoitems{type=ARMOR;id=MAD_CLERIC_BOOTS} 1 0.25
+    - mmoitems{type=ARMOR;id=MAD_CLERIC_HOOD} 1 0.05
+    - mmoitems{type=ARMOR;id=MAD_CLERIC_ROBES} 1 0.05
+    - mmoitems{type=ARMOR;id=MAD_CLERIC_LEGGINGS} 1 0.05
+    - mmoitems{type=ARMOR;id=MAD_CLERIC_BOOTS} 1 0.05
     
-    # 3. THE SCYTHE (15% chance - The rarest drop)
-    - mmoitems{type=SWORD;id=GRAVE_CALLER_SCYTHE} 1 0.15
+    # 3. THE SCYTHE (1% chance - The rarest drop)
+    - mmoitems{type=SWORD;id=GRAVE_CALLER_SCYTHE} 1 0.01
 
   # --- ADVANCED AI CONFIGURATION ---
   AIGoalSelectors:
@@ -91,6 +91,6 @@ AldousTheMadCleric:
     - skill{s=AldousArise} ~onDamaged =20%
     
     # 6. Defensive Mechanic: 
-    # He will only cast his Martyr's Bond shield if his health is below 50%.
+    # He will only cast his Martyr's Bond shield if his health is below 15%.
     # Checked every 15 seconds.
-    - skill{s=AldousMartyrsBond} ~onTimer:300 <50%
+    - skill{s=AldousMartyrsBond} ~onTimer:300 <15%
