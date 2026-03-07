@@ -17,7 +17,7 @@ AldousTheMadCleric:
     PreventOtherDrops: true
     KnockbackResistance: 0.6
     MovementSpeed: 0.22 # Slightly slower than a standard zombie
-    FollowRange: 64
+    FollowRange: 32
     MaxCombatRange: 64
     Despawn: false
   DamageModifiers:
@@ -26,8 +26,8 @@ AldousTheMadCleric:
     - POISON 0
     - FALL 0
     - SUFFOCATION 0
-    # 25% damage reduction from arrows to encourage players to risk getting close
-    - PROJECTILE 0.75 
+    # 50% damage reduction from arrows to encourage players to risk getting close
+    - PROJECTILE 0.50 
 
   Equipment:
     - mmoitems{type=ARMOR;id=MAD_CLERIC_HOOD} HEAD
@@ -43,7 +43,7 @@ AldousTheMadCleric:
     # Drops 1 to 2 Cores with a 100% chance (1.0)
     # - mmoitems{type=MATERIAL;id=FRACTURED_ARCANIC_CORE} 1-2 1.0
     
-    # 2. THE ARMOR SET (25% chance per piece)
+    # 2. THE ARMOR SET (5% chance per piece)
     # This means a player will have to fight him a few times to get the full stealth set!
     - mmoitems{type=ARMOR;id=MAD_CLERIC_HOOD} 1 0.05
     - mmoitems{type=ARMOR;id=MAD_CLERIC_ROBES} 1 0.05
