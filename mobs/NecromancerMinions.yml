@@ -8,6 +8,10 @@ CorruptedAcolyte:
   Options:
     MovementSpeed: 0.25
     PreventOtherDrops: true
+  # --- IMMUNITIES ---
+  DamageModifiers:
+    # 0 means they take 0% of the damage. They are now immune to walls!
+    - SUFFOCATION 0
   Modules:
     # Enables threat tracking so they can dynamically switch targets
     ThreatTable: true
@@ -49,6 +53,10 @@ FallenPaladin:
     PreventOtherDrops: true
   Modules:
     ThreatTable: true
+  # --- NEW: IMMUNITIES ---
+  DamageModifiers:
+    # 0 means they take 0% of the damage. They are now immune to walls!
+    - SUFFOCATION 0
   AIGoalSelectors:
     - clear
     - meleeattack
