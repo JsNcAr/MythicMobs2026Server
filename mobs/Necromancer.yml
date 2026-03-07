@@ -76,34 +76,24 @@ AldousTheMadCleric:
   # --- COMBAT LOGIC & SKILL TRIGGERS ---
   Skills:
     # --- CONSTANT MAGIC CASTING (High Frequency) ---
-    
-    # Ranged Magic: Fires a Soul Spear every 4 seconds. This acts as his "Basic Attack."
     - skill{s=SoulSpear} @target ~onTimer:80
-    
-    # Anti-Melee: Cast every 8 seconds, but ONLY if a player is within 5 blocks.
     - skill{s=NecroticBurst} @self ~onTimer:160
-    
-    # Area Denial: Cast every 15 seconds. Forces players to keep moving.
     - skill{s=AldousGraspingGraves} ~onTimer:300
     
-    # --- THE SUMMONING LOOP (Low Frequency, High Impact) ---
+    # --- THE RISING TENSION LOOP (Summon x2 -> Detonate) ---
     
-    # Spawns the swarm every 35 seconds (up from 18s). Gives players time to actually fight him.
-    - skill{s=AldousEndlessChoir} ~onTimer:700
+    # Wave 1 spawns at 20s. Wave 2 spawns at 40s.
+    - skill{s=AldousEndlessChoir} ~onTimer:400
     
-    # Detonates minions every 45 seconds (up from 25s). 
-    # Because this heals him, making it rare makes it feel like a critical "DPS Check" phase.
+    # Buffs the first wave at 30s so the players can't just ignore them.
+    - skill{s=AldousProfaneConsecration} ~onTimer:600
+    
+    # Detonates up to 3 minions at 45s (right after Wave 2 arrives).
+    # If players didn't clear Wave 1, there are now a LOT of bombs in the room!
     - skill{s=AldousCorpseDetonation} ~onTimer:900
     
-    # Buffs the swarm every 50 seconds. 
-    - skill{s=AldousProfaneConsecration} ~onTimer:1000
-    
     # --- HEALTH-TRIGGERED EVENTS (Unchanged) ---
-    
-    # The Wall (Fallen Paladins): Triggers exactly once per threshold.
     - skill{s=AldousArise} ~onDamaged =80%
     - skill{s=AldousArise} ~onDamaged =50%
     - skill{s=AldousArise} ~onDamaged =20%
-    
-    # Defensive Shield: Checked every 15 seconds, only activates below 15% HP.
-    - skill{s=AldousMartyrsBond} ~onTimer:300 <15%  
+    - skill{s=AldousMartyrsBond} ~onTimer:300 <15%
