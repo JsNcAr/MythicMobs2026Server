@@ -28,6 +28,9 @@ AldousTheMadCleric:
     - SUFFOCATION 0
     # 50% damage reduction from arrows to encourage players to risk getting close
     - PROJECTILE 0.50 
+    - LAVA 0 # Immune to lava to prevent cheesy deaths
+    - FIRE 0 # Immune to fire to prevent cheesy deaths
+    - DROWNING 0 # Immune to drowning to prevent cheesy deaths
 
   Equipment:
     - mmoitems{type=ARMOR;id=MAD_CLERIC_HOOD} HEAD
