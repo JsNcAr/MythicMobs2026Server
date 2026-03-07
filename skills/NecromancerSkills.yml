@@ -91,22 +91,22 @@ CorpseBombTimer:
   # Instantly kills the Acolyte
   - suicide @self
 
-# --- ANTI-MELEE BURST ---
+# --- ANTI-MELEE BURST (Upgraded) ---
 NecroticBurst:
-  # The condition ensures he only casts this if someone is uncomfortably close (within 5 blocks)
   Conditions:
   - targetwithin{d=5} true
   Skills:
-  - message{m="&8[&5Aldous&8] &7¡Retrocede, mortal insensato!"} @PlayersInRadius{r=15}
+  - message{m="&8[&5Aldous&8] &7¡Retrocede, mortal insensato!"} @PlayersInRadius{r=10}
   - sound{s=entity.generic.explode;v=1;p=0.5} @self
-  - sound{s=entity.wither.ambient;v=1;p=0.8} @self
-  # Creates a massive sphere of soul particles
   - effect:particlesphere{particle=soul;amount=100;radius=4} @self
-  - effect:particlesphere{particle=large_smoke;amount=50;radius=4} @self
-  # Deals 10 damage to anyone caught in it
   - damage{amount=10} @PlayersInRadius{r=5}
-  # The Knockback! 'velocity' pushes them back, 'velocityY' knocks them up into the air.
+  
+  # 1. Throws the players UP and AWAY
   - throw{velocity=1.5;velocityY=0.6} @PlayersInRadius{r=5}
+  
+  # 2. NEW: Aldous launches HIMSELF backward to create even more distance!
+  # A negative velocity (-1.5) shoots the caster directly backward from wherever they are looking.
+  - leap{velocity=-1.5;velocityY=0.4} @self
 
 # --- RANGED SPELL: SOUL SPEAR ---
 SoulSpear:
