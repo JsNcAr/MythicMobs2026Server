@@ -2,7 +2,7 @@ AldousTheMadCleric:
   Type: HUSK # Using Husk ensures he doesn't burn in daylight, just in case
   Display: '&5Aldous, the Mad Cleric'
   Disguise: Necromancer
-  Health: 350
+  Health: 800
   Damage: 5
   Faction: CultOfAldous
   Modules:
