@@ -2,7 +2,7 @@ CorruptedAcolyte:
   Type: ZOMBIE
   Display: '&7Corrupted Acolyte'
   Disguise: CorruptedAcolyte
-  Health: 15
+  Health: 20
   Damage: 10
   Faction: AldousMinions
   Options:
@@ -43,7 +43,7 @@ FallenPaladin:
   Type: WITHER_SKELETON
   Display: '&8[&6&lFallen Paladin&8]'
   Disguise: FallenPaladin
-  Health: 80
+  Health: 150
   Damage: 25
   Faction: AldousMinions
   Options:
