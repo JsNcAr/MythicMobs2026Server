@@ -148,7 +148,7 @@ PhantomLift:
 GraspOfTheDamned:
   Conditions:
   # ONLY fires if the target is more than 15 blocks away
-  - distance{d=14to35} true
+  - distance{d=14to50} true
   Skills:
   - message{m="&8[&5Aldous&8] &7There is no hiding in the dark!"} @target
   - sound{s=entity.enderman.stare;v=1;p=0.5} @target
