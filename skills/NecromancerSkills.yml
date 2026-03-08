@@ -176,7 +176,7 @@ ShadowBlink:
   - effect:particles{particle=large_smoke;amount=20;hS=0.5;vS=1} @self
   
   # The dodge: Teleports him to a random location 4 blocks away
-  - teleport{spreadh=4;spreadv=0;unsafe=false} @self
+  - teleport{spreadh=15;spreadv=0;unsafe=false} @self
   
   # A poof of smoke and a quiet sound where he reappears
   - effect:particles{particle=large_smoke;amount=20;hS=0.5;vS=1} @self
