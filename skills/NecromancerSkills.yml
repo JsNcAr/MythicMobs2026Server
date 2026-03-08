@@ -154,7 +154,7 @@ GraspOfTheDamned:
   - sound{s=entity.enderman.stare;v=1;p=0.5} @target
   
   # 1. Ruins their aim: Blinds them for 5 seconds (100 ticks)
-  - potion{type=BLINDNESS;duration=100;level=0} @target
+  - potion{type=BLINDNESS;duration=60;level=0} @target
   
   # Visuals: A burst of smoke and shadows around the sniper
   - effect:particlesphere{particle=squid_ink;amount=50;radius=2} @target
