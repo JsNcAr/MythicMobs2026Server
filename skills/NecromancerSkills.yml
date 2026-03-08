@@ -143,3 +143,26 @@ PhantomLift:
   - effect:particles{particle=soul;amount=30;vSpread=2;hSpread=0.5} @target
   - effect:particles{particle=ash;amount=50;vSpread=2;hSpread=0.5} @target
   - sound{s=entity.shulker_bullet.hit;v=1;p=0.5} @target
+
+# --- ANTI-SNIPER MECHANIC (Grasp of the Damned) ---
+GraspOfTheDamned:
+  Conditions:
+  # ONLY fires if the target is more than 15 blocks away
+  - distance{d=>15} true
+  Skills:
+  - message{m="&8[&5Aldous&8] &7There is no hiding in the dark!"} @target
+  - sound{s=entity.enderman.stare;v=1;p=0.5} @target
+  
+  # 1. Ruins their aim: Blinds them for 5 seconds (100 ticks)
+  - potion{type=BLINDNESS;duration=100;level=0} @target
+  
+  # Visuals: A burst of smoke and shadows around the sniper
+  - effect:particlesphere{particle=squid_ink;amount=50;radius=2} @target
+  - effect:particles{particle=large_smoke;amount=30;vSpread=1;hSpread=1} @target
+  
+  # 2. The Ambush: Summons 2 Acolytes within a 3-block radius of the sniper!
+  # 'safe=true' ensures they don't spawn inside the walls if the sniper is on a ledge.
+  - summon{mob=CorruptedAcolyte;amount=2;radius=3;safe=true} @target
+  
+  # A terrifying sound effect right next to the player as the mobs spawn
+  - sound{s=entity.zombie.break_wooden_door;v=1;p=0.5} @target

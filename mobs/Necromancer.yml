@@ -65,7 +65,7 @@ AldousTheMadCleric:
     - float 
     
     # 3. NEW DISENGAGE LOGIC: If a player gets within 8 blocks, he overrides everything and sprints away
-    - fleeplayers{distance=8;speed=1.2}
+    - fleeplayers{distance=10;speed=1.8}
     
     # 4. Tactical Positioning: If the player is outside 8 blocks, he maintains his spellcasting distance
     - MoveWithinDistanceOfTarget
@@ -98,7 +98,7 @@ AldousTheMadCleric:
     # --- THE RISING TENSION LOOP (Summon x2 -> Detonate) ---
     
     # Wave 1 spawns at 20s. Wave 2 spawns at 40s.
-    - skill{s=AldousEndlessChoir} ~onTimer:400
+    - skill{s=AldousEndlessChoir} ~onTimer:320
     
     # Buffs the first wave at 30s so the players can't just ignore them.
     - skill{s=AldousProfaneConsecration} ~onTimer:600
@@ -109,9 +109,14 @@ AldousTheMadCleric:
 
     # NEW: Lifts his current target into the air every 14 seconds (280 ticks)
     - skill{s=PhantomLift} @target ~onTimer:280
+
+    # NEW: Checks for snipers every 20 seconds. If they are >15 blocks away, he yanks them in!
+    - skill{s=GraspOfTheDamned} @target ~onTimer:400
     
     # --- HEALTH-TRIGGERED EVENTS (Unchanged) ---
     - skill{s=AldousArise} ~onDamaged =80%
     - skill{s=AldousArise} ~onDamaged =50%
+    - skill{s=AldousArise} ~onDamaged =30%
     - skill{s=AldousArise} ~onDamaged =20%
-    - skill{s=AldousMartyrsBond} ~onTimer:300 <15%
+    - skill{s=AldousMartyrsBond} ~onDamaged <20% ~onTimer:400
+    - skill{s=AldousMartyrsBond} ~onTimer:300 <20%
