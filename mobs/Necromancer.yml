@@ -101,7 +101,7 @@ AldousTheMadCleric:
     - skill{s=AldousEndlessChoir} ~onTimer:320
     
     # Buffs the first wave at 30s so the players can't just ignore them.
-    - skill{s=AldousProfaneConsecration} ~onTimer:600
+    - skill{s=AldousProfaneConsecration} ~onTimer:500
     
     # Detonates up to 3 minions at 45s (right after Wave 2 arrives).
     # If players didn't clear Wave 1, there are now a LOT of bombs in the room!

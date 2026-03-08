@@ -82,7 +82,7 @@ CorpseBombTimer:
   
   # NEW: The Acolyte transfers its life force to Aldous!
   # Heals Aldous for 50 HP per exploding minion. 
-  - heal{amount=50} @MobsInRadius{types=AldousTheMadCleric;r=40}
+  - heal{amount=80} @MobsInRadius{types=AldousTheMadCleric;r=40}
   
   # Optional: A cool visual showing the soul traveling/healing
   - effect:particles{particle=soul;amount=20;hS=1;vS=1} @MobsInRadius{types=AldousTheMadCleric;r=40}
