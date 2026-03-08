@@ -112,6 +112,8 @@ AldousTheMadCleric:
 
     # NEW: Checks for snipers every 20 seconds. If they are >15 blocks away, he yanks them in!
     - skill{s=GraspOfTheDamned} @target ~onTimer:400
+
+    - skill{s=ShadowBlink} @self ~onTimer:400
     
     # --- HEALTH-TRIGGERED EVENTS (Unchanged) ---
     - skill{s=AldousArise} ~onDamaged =80%

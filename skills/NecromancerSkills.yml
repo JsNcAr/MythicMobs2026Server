@@ -148,7 +148,7 @@ PhantomLift:
 GraspOfTheDamned:
   Conditions:
   # ONLY fires if the target is more than 15 blocks away
-  - distance{d=14to50} true
+  - distance{d>15} true
   Skills:
   - message{m="&8[&5Aldous&8] &7There is no hiding in the dark!"} @target
   - sound{s=entity.enderman.stare;v=1;p=0.5} @target
@@ -166,3 +166,18 @@ GraspOfTheDamned:
   
   # A terrifying sound effect right next to the player as the mobs spawn
   - sound{s=entity.zombie.break_wooden_door;v=1;p=0.5} @target
+
+ShadowBlink:
+  Conditions:
+  # He only uses this to dodge if the player is far enough away to use a bow
+  - distance{d=>20} true
+  Skills:
+  # A poof of smoke where he was standing
+  - effect:particles{particle=large_smoke;amount=20;hS=0.5;vS=1} @self
+  
+  # The dodge: Teleports him to a random location 4 blocks away
+  - teleport{spreadh=4;spreadv=0;unsafe=false} @self
+  
+  # A poof of smoke and a quiet sound where he reappears
+  - effect:particles{particle=large_smoke;amount=20;hS=0.5;vS=1} @self
+  - sound{s=entity.enderman.teleport;v=0.3;p=1.5} @self
