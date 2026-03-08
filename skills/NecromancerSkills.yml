@@ -162,7 +162,7 @@ GraspOfTheDamned:
   
   # 2. The Ambush: Summons 2 Acolytes within a 3-block radius of the sniper!
   # 'safe=true' ensures they don't spawn inside the walls if the sniper is on a ledge.
-  - summon{mob=CorruptedAcolyte;amount=2;radius=3;safe=true} @target
+  - summon{mob=CorruptedAcolyte;amount=2;radius=6;safe=true} @target
   
   # A terrifying sound effect right next to the player as the mobs spawn
   - sound{s=entity.zombie.break_wooden_door;v=1;p=0.5} @target
