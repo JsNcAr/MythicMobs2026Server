@@ -98,7 +98,7 @@ AldousTheMadCleric:
     # --- THE RISING TENSION LOOP (Summon x2 -> Detonate) ---
     
     # Wave 1 spawns at 20s. Wave 2 spawns at 40s.
-    - skill{s=AldousEndlessChoir} ~onTimer:320
+    - skill{s=AldousEndlessChoir} ~onTimer:400
     
     # Buffs the first wave at 30s so the players can't just ignore them.
     - skill{s=AldousProfaneConsecration} ~onTimer:500
@@ -113,7 +113,7 @@ AldousTheMadCleric:
     # NEW: Checks for snipers every 20 seconds. If they are >15 blocks away, he yanks them in!
     - skill{s=GraspOfTheDamned} @target ~onTimer:400
 
-    - skill{s=ShadowBlink} @self ~onTimer:400
+    - skill{s=ShadowBlink} @self ~onTimer:600
     
     # --- HEALTH-TRIGGERED EVENTS (Unchanged) ---
     - skill{s=AldousArise} ~onDamaged =80%
