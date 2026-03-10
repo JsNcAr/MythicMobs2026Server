@@ -3,7 +3,7 @@ AldousTheMadCleric:
   Display: '&5Aldous, the Mad Cleric'
   Disguise: Necromancer
   Health: 800
-  Damage: 15
+  Damage: 20
   Faction: CultOfAldous
   Modules:
     ThreatTable: true
@@ -98,7 +98,7 @@ AldousTheMadCleric:
     # --- THE RISING TENSION LOOP (Summon x2 -> Detonate) ---
     
     # Wave 1 spawns at 20s. Wave 2 spawns at 40s.
-    - skill{s=AldousEndlessChoir} ~onTimer:400
+    - skill{s=AldousEndlessChoir} ~onTimer:320
     
     # Buffs the first wave at 30s so the players can't just ignore them.
     - skill{s=AldousProfaneConsecration} ~onTimer:500
@@ -114,6 +114,9 @@ AldousTheMadCleric:
     - skill{s=GraspOfTheDamned} @target ~onTimer:400
 
     - skill{s=ShadowBlink} @self ~onTimer:600
+
+    # Cruzader pull skill to counter snipers
+    - skill{s=CruzaderPull} @target ~onTimer:500
     
     # --- HEALTH-TRIGGERED EVENTS (Unchanged) ---
     - skill{s=AldousArise} ~onDamaged =80%
