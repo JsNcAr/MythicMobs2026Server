@@ -22,60 +22,52 @@ OpenQuarantineVault:
   - sound{s=block.iron_door.close;v=2;p=0.5} @self
   - message{m="&8[&cCuarentena&8] &cLa puerta se cierra de golpe a tus espaldas."} @target
 
+# --- 1. THE START SEQUENCE ---
 DungeonStartSequence:
   Conditions:
-  # This ensures the sequence only runs if the door is currently "Unlocked"
   - stance{stance=Locked} false
   Skills:
-  # 1. Instantly lock the tripwire so it stops scanning
   - setstance{stance=Locked} @self
+  # Tags the manager so it knows a fight is currently happening
+  - addtag{t=FightActive} @self 
   
-  # 2. Give the 10-second warning
-  - message{m="&c&lThe dungeon gates will close in 10 seconds!"} @PlayersInRadius{r=20}
+  - message{m="&c&lThe gates will close in 10 seconds!"} @PlayersInRadius{r=20}
   - sound{s=block.note_block.pling;v=1;p=1} @PlayersInRadius{r=20}
-  
-  # 3. Wait 10 seconds (200 ticks) to let the rest of the party enter
   - delay 200
   
-  # 4. SLAM THE DOOR SHUT! (Replace the X Y Z with your door coordinates)
+  # SLAM THE DOOR SHUT!
   - command{c="minecraft:fill -4857 -28 1530 -4857 -27 1530 minecraft:iron_bars"} @self
   - sound{s=block.anvil.land;v=1;p=0.5} @PlayersInRadius{r=30}
-  - message{m="&4&lThe gates have slammed shut!"} @PlayersInRadius{r=30}
-  
-  # 5. Spawn Aldous in the center of the room! 
-  # (@forward{f=15} spawns him exactly 15 blocks in front of the doorway)
-  - summon{mob=AldousTheNecromancer;amount=1;y=0} @forward{f=15}
+  # - summon{mob=AldousTheNecromancer;amount=1;y=0} @forward{f=15}
 
-DungeonEnd_Win:
+# --- 2. THE FAIL SEQUENCE (Players died or ran away) ---
+DungeonFailSequence:
+  Conditions:
+  - stance{stance=Locked} true
+  - hasTag{t=FightActive} true
+  # If there are no players within 40 blocks, they wiped!
+  - playernotwithin{d=40} true 
   Skills:
-  # 1. Open the door (Replacing the iron bars with air)
+  # 1. Clean up the room (Deletes Aldous minions)
+  - remove @MobsInRadius{types=FallenPaladin,CorruptedAcolyte;r=40}
+  
+  # 2. Open the door
+  - command{c="minecraft:fill -4857 -28 1530 -4857 -27 1530 minecraft:air"} @self
+  
+  # 3. Reset the manager for the next group
+  - removetag{t=FightActive} @self
+  - setstance{stance=Unlocked} @self
+
+# --- 3. THE WIN SEQUENCE (The Boss Died) ---
+DungeonWinSequence:
+  Conditions:
+  - stance{stance=Locked} true
+  Skills:
+  # 1. Open the door
   - command{c="minecraft:fill -4857 -28 1530 -4857 -27 1530 minecraft:air"} @self
   - sound{s=block.iron_door.open;v=1;p=0.5} @PlayersInRadius{r=40}
   - message{m="&a&lThe Necromancer is defeated. The gates open."} @PlayersInRadius{r=40}
   
-  # 2. Reset the Tripwire so the dungeon can trigger again later!
-  - setstance{stance=Unlocked} @MobsInRadius{types=DungeonEntranceTrigger;r=50}
-
-DungeonEnd_Fail:
-  Conditions:
-  # This checks if there are NO PLAYERS within 40 blocks of the boss room
-  - playernotwithin{d=40} true
-  Skills:
-  # 1. Open the door (Replacing the iron bars with air)
-  - command{c="minecraft:fill -4857 -28 1530 -4857 -27 1530 minecraft:crimson_door"} @self
-  
-  # 2. Reset the Tripwire for the next group
-  - setstance{stance=Unlocked} @MobsInRadius{types=DungeonEntranceTrigger;r=50}
-
-  # Reset his health and despawn any minions so the next group starts fresh
-  - heal @self
-  - skill{s=ResetMinions} @self ~onTimer:100
-
-  
-  # 3. Despawn Aldous so he doesn't duplicate when the next group enters
-  # - remove @self
-
-ResetMinions:
-  Skills:
-  - remove @MobsInRadius{types=CorruptedAcolyte;r=50}
-  - remove @MobsInRadius{types=FallenPaladin;r=50}
+  # 2. Reset the manager for the next group
+  - removetag{t=FightActive} @self
+  - setstance{stance=Unlocked} @self
