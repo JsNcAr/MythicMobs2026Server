@@ -38,7 +38,7 @@ DungeonStartSequence:
   - delay 200
   
   # 4. SLAM THE DOOR SHUT! (Replace the X Y Z with your door coordinates)
-  - command{c="minecraft:fill -4856 -28 1530 -4856 -27 1530 minecraft:iron_bars"} @self
+  - command{c="minecraft:fill -4857 -28 1530 -4857 -27 1530 minecraft:iron_bars"} @self
   - sound{s=block.anvil.land;v=1;p=0.5} @PlayersInRadius{r=30}
   - message{m="&4&lThe gates have slammed shut!"} @PlayersInRadius{r=30}
   
@@ -49,7 +49,7 @@ DungeonStartSequence:
 DungeonEnd_Win:
   Skills:
   # 1. Open the door (Replacing the iron bars with air)
-  - command{c="minecraft:fill -4856 -28 1530 -4856 -27 1530 minecraft:air"} @self
+  - command{c="minecraft:fill -4857 -28 1530 -4857 -27 1530 minecraft:air"} @self
   - sound{s=block.iron_door.open;v=1;p=0.5} @PlayersInRadius{r=40}
   - message{m="&a&lThe Necromancer is defeated. The gates open."} @PlayersInRadius{r=40}
   
@@ -62,7 +62,7 @@ DungeonEnd_Fail:
   - playernotwithin{d=40} true
   Skills:
   # 1. Open the door (Replacing the iron bars with air)
-  - command{c="minecraft:fill -4856 -28 1530 -4856 -27 1530 minecraft:crimson_door"} @self
+  - command{c="minecraft:fill -4857 -28 1530 -4857 -27 1530 minecraft:crimson_door"} @self
   
   # 2. Reset the Tripwire for the next group
   - setstance{stance=Unlocked} @MobsInRadius{types=DungeonEntranceTrigger;r=50}
