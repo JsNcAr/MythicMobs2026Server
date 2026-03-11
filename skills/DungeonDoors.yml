@@ -68,4 +68,4 @@ DungeonEnd_Fail:
   - setstance{stance=Unlocked} @MobsInRadius{types=DungeonEntranceTrigger;r=50}
   
   # 3. Despawn Aldous so he doesn't duplicate when the next group enters
-  - remove @self
+  # - remove @self
