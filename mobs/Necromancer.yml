@@ -125,3 +125,9 @@ AldousTheMadCleric:
     - skill{s=AldousArise} ~onDamaged =20%
     - skill{s=AldousMartyrsBond} ~onDamaged <20% ~onTimer:400
     - skill{s=AldousMartyrsBond} ~onTimer:300 <20%
+
+    # On death, trigger the dungeon end sequence to reward players and open the exit
+    - skill{s=DungeonEnd_Win} ~onDeath
+
+    # If players fail (e.g., all die or leave the arena), trigger the fail sequence to reset the dungeon
+    - skill{s=DungeonEnd_Fail} ~onTimer:100

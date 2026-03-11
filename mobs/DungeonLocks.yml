@@ -9,3 +9,15 @@ QuarantineLock:
     AlwaysShowName: true
   Skills:
   - skill{s=OpenQuarantineVault} @trigger ~onInteract
+
+DungeonEntranceTrigger:
+  Type: ARMOR_STAND
+  Display: 'DungeonTrigger'
+  Options:
+    Invisible: true
+    Marker: true
+    Persistent: true
+    HasGravity: false
+  Skills:
+    # Checks every 0.5 seconds if a player is within 4 blocks of the door.
+    - skill{s=DungeonStartSequence} @PlayersInRadius{r=4} ~onTimer:10
