@@ -7,6 +7,7 @@ QuarantineLock:
     HasGravity: false
     Invincible: true
     AlwaysShowName: true
+    Despawn: false
   Skills:
   - skill{s=OpenQuarantineVault} @trigger ~onInteract
 
@@ -18,6 +19,7 @@ DungeonEntranceTrigger:
     Marker: true
     Persistent: true
     HasGravity: false
+    Despawn: false
   Skills:
     # Checks every 0.5 seconds if a player is within 4 blocks of the door.
     - skill{s=DungeonStartSequence} @PlayersInRadius{r=4} ~onTimer:10
