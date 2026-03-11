@@ -66,6 +66,16 @@ DungeonEnd_Fail:
   
   # 2. Reset the Tripwire for the next group
   - setstance{stance=Unlocked} @MobsInRadius{types=DungeonEntranceTrigger;r=50}
+
+  # Reset his health and despawn any minions so the next group starts fresh
+  - heal @self
+  - skill{s=ResetMinions} @self ~onTimer:100
+
   
   # 3. Despawn Aldous so he doesn't duplicate when the next group enters
   # - remove @self
+
+ResetMinions:
+  Skills:
+  - remove @MobsInRadius{types=CorruptedAcolyte;r=50}
+  - remove @MobsInRadius{types=FallenPaladin;r=50}
