@@ -71,7 +71,7 @@ DungeonWinSequence:
   Skills:
   - command{c="minecraft:fill -4856 -33 1500 -4856 -32 1500 minecraft:air"} @self
   - sound{s=block.iron_door.open;v=1;p=0.5} @PlayersInRadius{r=40}
-  - message{m="&a&lThe Necromancer is defeated. The gates open."} @PlayersInRadius{r=40}
+  - message{m="&a&lThe Necromancer is defeated. The gates open."} @PlayersInRadius{r=80}
   
   # Hard Reset
   # - removetag{t=FightActive} @self
