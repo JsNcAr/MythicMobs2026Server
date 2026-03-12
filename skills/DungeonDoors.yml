@@ -67,7 +67,7 @@ DungeonWinSequence:
   # 1. Ensure the fight has actually started (Warmup is over)
   # - hasTag{t=FightActive} true
   # 2. Check the room: If the boss count is 0, he is dead!
-  - mobsinradius{types=AldousTheMadCleric;r=100} < 1
+  - mobsinradius{types=AldousTheMadCleric;r=100} 0
   Skills:
   - command{c="minecraft:fill -4856 -33 1500 -4856 -32 1500 minecraft:air"} @self
   - sound{s=block.iron_door.open;v=1;p=0.5} @PlayersInRadius{r=40}
