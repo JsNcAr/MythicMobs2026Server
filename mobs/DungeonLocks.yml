@@ -28,4 +28,4 @@ DungeonEntranceTrigger:
     # - skill{s=DungeonFailSequence} ~onTimer:40
     
     # 3. WIN STATE LISTENER: Waits for the boss to send the "BOSS_DEFEATED" signal
-    - skill{s=DungeonWinSequence} ~onSignal:BOSS_DEFEATED
+    - skill{s=DungeonWinSequence} @self ~onSignal:BOSS_DEFEATED
