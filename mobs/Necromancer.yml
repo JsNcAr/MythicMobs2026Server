@@ -123,4 +123,4 @@ AldousTheMadCleric:
     # --- NEW: DUNGEON MANAGER INTEGRATION ---
     # He NO LONGER handles the doors or the fail states! 
     # All he does is shout "I'm dead!" to the invisible Armor Stand when he dies.
-    - signal{s=BOSS_DEFEATED} @MobsInRadius{types=DungeonEntranceTrigger;r=50} ~onDeath
+    - signal{s=BOSS_DEFEATED} @MobsInRadius{t=DungeonEntranceTrigger;r=50} ~onDeath
