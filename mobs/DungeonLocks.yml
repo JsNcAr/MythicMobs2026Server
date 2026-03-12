@@ -22,10 +22,10 @@ DungeonEntranceTrigger:
     Despawn: false
   Skills:
     # Checks every 0.5 seconds if a player is within 4 blocks of the door.
-    - skill{s=DungeonStartSequence} @PlayersInRadius{r=4} ~onTimer:4
+    # - skill{s=DungeonStartSequence} @PlayersInRadius{r=4} ~onTimer:4
     
     # 2. FAIL STATE MONITOR: Constantly checks if players wiped or left
-    - skill{s=DungeonFailSequence} ~onTimer:40
+    # - skill{s=DungeonFailSequence} ~onTimer:40
     
     # 3. WIN STATE LISTENER: Waits for the boss to send the "BOSS_DEFEATED" signal
     - skill{s=DungeonWinSequence} ~onSignal:BOSS_DEFEATED

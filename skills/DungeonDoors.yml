@@ -22,57 +22,57 @@ OpenQuarantineVault:
   - sound{s=block.iron_door.close;v=2;p=0.5} @self
   - message{m="&8[&cCuarentena&8] &cLa puerta se cierra de golpe a tus espaldas."} @target
 
-# --- 1. THE START SEQUENCE ---
-DungeonStartSequence:
-  Conditions:
-  - stance{stance=Locked} false
-  Skills:
-  # Lock the door from being triggered again
-  - setstance{stance=Locked} @self
-  - addtag{t=Warmup} @self 
+# # --- 1. THE START SEQUENCE ---
+# DungeonStartSequence:
+#   Conditions:
+#   - stance{stance=Locked} false
+#   Skills:
+#   # Lock the door from being triggered again
+#   - setstance{stance=Locked} @self
+#   - addtag{t=Warmup} @self 
   
-  - message{m="&c&lThe gates will close in 10 seconds!"} @PlayersInRadius{r=20}
-  - sound{s=block.note_block.pling;v=1;p=1} @PlayersInRadius{r=20}
+#   - message{m="&c&lThe gates will close in 10 seconds!"} @PlayersInRadius{r=20}
+#   - sound{s=block.note_block.pling;v=1;p=1} @PlayersInRadius{r=20}
   
-  # Wait 10 seconds
-  - delay 200
+#   # Wait 10 seconds
+#   - delay 200
   
-  # Close doors and summon boss
-  - command{c="minecraft:fill -4857 -28 1530 -4857 -27 1530 minecraft:iron_bars"} @self
-  - sound{s=block.anvil.land;v=1;p=0.5} @PlayersInRadius{r=30}
-  # - summon{mob=AldousTheNecromancer;amount=1;y=0} @forward{f=15}
+#   # Close doors and summon boss
+#   - command{c="minecraft:fill -4857 -28 1530 -4857 -27 1530 minecraft:iron_bars"} @self
+#   - sound{s=block.anvil.land;v=1;p=0.5} @PlayersInRadius{r=30}
+#   # - summon{mob=AldousTheNecromancer;amount=1;y=0} @forward{f=15}
   
-  # Switch the state from Warmup to Active Fight
-  - removetag{t=Warmup} @self
-  - addtag{t=FightActive} @self
+#   # Switch the state from Warmup to Active Fight
+#   - removetag{t=Warmup} @self
+#   - addtag{t=FightActive} @self
 
-# --- 2. THE FAIL SEQUENCE (Players died or ran away) ---
-DungeonFailSequence:
-  Conditions:
-  - stance{stance=Locked} true
-  # Increased radius to 60 to ensure players in the back of the room aren't counted as "wiped"
-  - playernotwithin{d=40} true 
-  Skills:
-  - remove @MobsInRadius{types=FallenPaladin,CorruptedAcolyte;r=60}
-  - command{c="minecraft:fill -4857 -28 1530 -4857 -27 1530 minecraft:air"} @self
+# # --- 2. THE FAIL SEQUENCE (Players died or ran away) ---
+# DungeonFailSequence:
+#   Conditions:
+#   - stance{stance=Locked} true
+#   # Increased radius to 60 to ensure players in the back of the room aren't counted as "wiped"
+#   - playernotwithin{d=40} true 
+#   Skills:
+#   - remove @MobsInRadius{types=FallenPaladin,CorruptedAcolyte;r=60}
+#   - command{c="minecraft:fill -4857 -28 1530 -4857 -27 1530 minecraft:air"} @self
   
-  # Hard Reset
-  - removetag{t=Warmup} @self
-  - removetag{t=FightActive} @self
-  - setstance{stance=Unlocked} @self
+#   # Hard Reset
+#   - removetag{t=Warmup} @self
+#   - removetag{t=FightActive} @self
+#   - setstance{stance=Unlocked} @self
 
 # --- 3. THE WIN SEQUENCE (The Boss Died) ---
 DungeonWinSequence:
   Conditions:
   # 1. Ensure the fight has actually started (Warmup is over)
-  - hasTag{t=FightActive} true
+  # - hasTag{t=FightActive} true
   # 2. Check the room: If the boss count is 0, he is dead!
-  - mobsinradius{types=AldousTheNecromancer;r=60} < 1
+  - mobsinradius{types=AldousTheNecromancer;r=100} < 1
   Skills:
-  - command{c="minecraft:fill -4857 -28 1530 -4857 -27 1530 minecraft:air"} @self
+  - command{c="minecraft:fill -4856 -33 1500 -4856 -32 1500 minecraft:air"} @self
   - sound{s=block.iron_door.open;v=1;p=0.5} @PlayersInRadius{r=40}
   - message{m="&a&lThe Necromancer is defeated. The gates open."} @PlayersInRadius{r=40}
   
   # Hard Reset
-  - removetag{t=FightActive} @self
-  - setstance{stance=Unlocked} @self
+  # - removetag{t=FightActive} @self
+  # - setstance{stance=Unlocked} @self
