@@ -44,7 +44,7 @@ AldousTheMadCleric:
   Drops:
     # 1. THE GUARANTEED CRAFTING PROGRESSION
     # Drops 1 to 2 Cores with a 100% chance (1.0)
-    - mmoitems{type=MATERIAL;id=FRACTURED_ARCANIC_CORE} 1-2 1.0
+    - mmoitems{type=MATERIAL;id=FRACTURED_ARCANIC_CORE} 2-3 1.0
     
     # 2. THE ARMOR SET (5% chance per piece)
     # This means a player will have to fight him a few times to get the full stealth set!
