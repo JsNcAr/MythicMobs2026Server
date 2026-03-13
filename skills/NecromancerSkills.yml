@@ -182,6 +182,15 @@ ShadowBlink:
   - effect:particles{particle=large_smoke;amount=20;hS=0.5;vS=1} @self
   - sound{s=entity.enderman.teleport;v=0.3;p=1.5} @self
 
+
+# --- DUNGEON MANAGER INTEGRATION ---
+NecromancerIntro:
+  Skills:
+  - message{m="&8[&5Aldous&8] &7¡Ah, un intruso! ¿Crees que puedes perturbar mi sagrada herejía?"} @PlayersInRadius{r=30}
+  - sound{s=entity.evoker.prepare_summon;v=1;p=0.5} @self
+  # Blocks the exit
+  - setblock{material=red_nether_bricks} @Location{location=-4856,-33,1500}
+  - setblock{material=red_nether_bricks} @Location{location=-4856,-32,1500}
 OpenNecromancerPath:
   Skills:
   - breakblock @Location{location=-4856,-33,1500}

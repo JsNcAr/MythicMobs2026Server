@@ -90,6 +90,9 @@ AldousTheMadCleric:
 
   # --- COMBAT LOGIC & SKILL TRIGGERS ---
   Skills:
+    # On spawn, blocks the exit and announces his arrival
+    - skill{s=NecromancerIntro} @self ~onSpawn
+
     # --- CONSTANT MAGIC CASTING (High Frequency) ---
     - skill{s=SoulSpear} @target ~onTimer:80
     - skill{s=NecroticBurst} @self ~onTimer:160
