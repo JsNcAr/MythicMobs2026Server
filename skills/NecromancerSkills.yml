@@ -181,3 +181,11 @@ ShadowBlink:
   # A poof of smoke and a quiet sound where he reappears
   - effect:particles{particle=large_smoke;amount=20;hS=0.5;vS=1} @self
   - sound{s=entity.enderman.teleport;v=0.3;p=1.5} @self
+
+OpenNecromancerPath:
+  Skills:
+  - breakblock @Location{location=-4856,-33,1500}
+  - breakblock @Location{location=-4856,-32,1500}
+  # - command{c="minecraft:fill -4856 -33 1500 -4856 -32 1500 minecraft:air"} @Location
+  - sound{s=block.iron_door.open;v=1;p=0.5} @PlayersInRadius{r=40}
+  - message{m="&8[&5Aldous&8] &7¡Mi muerte no es el fin, sino el principio de tu perdición!"} @PlayersInRadius{r=80}
