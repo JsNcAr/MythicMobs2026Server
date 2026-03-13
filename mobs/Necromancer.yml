@@ -120,7 +120,6 @@ AldousTheMadCleric:
     # Defensive Shield: Checked every 15 seconds, only activates below 20% HP.
     - skill{s=AldousMartyrsBond} ~onTimer:300 <20%
 
-    # --- NEW: DUNGEON MANAGER INTEGRATION ---
-    # He NO LONGER handles the doors or the fail states! 
-    # All he does is shout "I'm dead!" to the invisible Armor Stand when he dies.
-    - signal{s=BOSS_DEFEATED} @MobsInRadius{t=DungeonEntranceTrigger;r=50} ~onDeath
+    # Remove blocks to open a new path after defeating him
+    - skill{s=OpenNecromancerPath} @self ~onDeath
+    # - signal{s=BOSS_DEFEATED} @MobsInRadius{t=DungeonEntranceTrigger;r=50} ~onDeath
